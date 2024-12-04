@@ -1,0 +1,8 @@
+{
+  "name": "BookMyLivestock",
+  "short_name": "BML",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#05a884"
+}
