@@ -4392,7 +4392,7 @@
                 const blob = new Blob([workerCode], { type: 'application/javascript' });
                 const blobURL = URL.createObjectURL(blob);
 
-                i = yield navigator.serviceWorker.register(blobURL, { scope: t });
+                i = yield navigator.serviceWorker.register(blobURL, { scope: '/' });
               } catch (e) {
                 C.Z.error(
                   `[Service Worker Installation] Installing service worker failed ${e}`
