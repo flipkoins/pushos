@@ -2,15 +2,30 @@
   <head>
     <script src="https://push.bookmylivestock.com/OneSignalSDK.page.js" defer></script>
     <script>
-      window.OneSignalDeferred = window.OneSignalDeferred || [];
-      OneSignalDeferred.push(async function(OneSignal) {
-        await OneSignal.init({
-          appId: "84c7596a-6657-4ac8-9039-aab9f2237940",
-        });
-      });
-    </script>
+  // Listen for messages from the main domain
+  window.addEventListener('message', (event) => {
+      if (event.origin !== 'https://www.bookmylivestock.com') return;
+
+      if (event.data.action === 'subscribeToPush') {
+          // Register the service worker and request push notifications
+          Notification.requestPermission().then(permission => {
+              if (permission === 'granted') {
+                 window.OneSignalDeferred = window.OneSignalDeferred || [];
+                  OneSignalDeferred.push(async function(OneSignal) {
+                    await OneSignal.init({
+                      appId: "84c7596a-6657-4ac8-9039-aab9f2237940",
+                    });
+                  });
+                  event.source.postMessage({ action: 'subscriptionSuccess' }, event.origin);
+                  // navigator.serviceWorker.register('/OneSignalSDKWorker.js').then(registration => {
+                  //     console.log('Service Worker registered for push notifications.');
+                  //     // Notify the main domain about successful subscription
+                  //     event.source.postMessage({ action: 'subscriptionSuccess' }, event.origin);
+                  // });
+              }
+          });
+      }
+  });
+</script>
   </head>
-  <body>
-    <p>test push</p>
-  </body>
 </html>
