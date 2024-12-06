@@ -1,31 +1,44 @@
-<html>
-  <head>
-    <script src="https://push.bookmylivestock.com/OneSignalSDK.page.js" defer></script>
-    <script>
-  // Listen for messages from the main domain
-  window.addEventListener('message', (event) => {
-      if (event.origin !== 'https://www.bookmylivestock.com') return;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Push Notification Subscription</title>
+</head>
+<body>
+    <h1>Subscribe to Notifications</h1>
+    <button id="subscribeNow">Enable Notifications</button>
 
-      if (event.data.action === 'subscribeToPush') {
-          // Register the service worker and request push notifications
-          Notification.requestPermission().then(permission => {
-              if (permission === 'granted') {
-                 window.OneSignalDeferred = window.OneSignalDeferred || [];
+    <script>
+        document.getElementById('subscribeNow').addEventListener('click', () => {
+            // Request notification permissions
+            Notification.requestPermission().then(permission => {
+                if (permission === 'granted') {
+                  window.OneSignalDeferred = window.OneSignalDeferred || [];
                   OneSignalDeferred.push(async function(OneSignal) {
                     await OneSignal.init({
                       appId: "84c7596a-6657-4ac8-9039-aab9f2237940",
                     });
                   });
-                  event.source.postMessage({ action: 'subscriptionSuccess' }, event.origin);
-                  // navigator.serviceWorker.register('/OneSignalSDKWorker.js').then(registration => {
-                  //     console.log('Service Worker registered for push notifications.');
-                  //     // Notify the main domain about successful subscription
-                  //     event.source.postMessage({ action: 'subscriptionSuccess' }, event.origin);
-                  // });
-              }
-          });
-      }
-  });
-</script>
-  </head>
+                  window.opener.postMessage({ action: 'subscriptionSuccess' }, 'https://www.bookmylivestock.com');
+                    // navigator.serviceWorker.register('/OneSignalSDKWorker.js')
+                    //     .then(() => {
+                    //         console.log('Service Worker registered successfully.');
+
+                    //         // Notify the main domain of success
+                    //         window.opener.postMessage({ action: 'subscriptionSuccess' }, 'https://www.bookmylivestock.com');
+                    //     })
+                    //     .catch(error => {
+                    //         console.error('Service Worker registration failed:', error);
+
+                    //         // Notify the main domain of failure
+                    //         window.opener.postMessage({ action: 'subscriptionFailed' }, 'https://bookmylivestock.com');
+                    //     });
+                } else {
+                    console.log('Notification permission denied.');
+                    // Notify the main domain of failure
+                    window.opener.postMessage({ action: 'subscriptionFailed' }, 'https://bookmylivestock.com');
+                }
+            });
+        });
+    </script>
+</body>
 </html>
