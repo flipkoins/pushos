@@ -6,6 +6,7 @@
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/16.png" type="image/png" sizes="16x16">
 <link rel="icon" href="/32.png"  type="image/png" sizes="32x32" />
+    
 <style>
 @media only screen and (max-width: 375px) {
     #subscribeNow {
@@ -20,6 +21,10 @@
     }
 }
 </style>
+     <script
+      src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
+      defer
+    ></script>
 </head>
 <body style="
     text-align: center;
@@ -68,6 +73,7 @@
       if ("Notification" in window) {
         if (Notification.permission === "default") {
           Notification.requestPermission().then((permission) => {
+              console.log(permission, 'permission');
             if (permission === "granted") {
               window.OneSignalDeferred = window.OneSignalDeferred || [];
                 OneSignalDeferred.push(function(OneSignal) {
