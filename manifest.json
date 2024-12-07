@@ -11,6 +11,50 @@
             "src": "icon.png",
             "sizes": "192x192",
             "type": "android-launchericon-192-192.png"
-        }
+        },
+    {
+      "src": "android/android-launchericon-144-144.png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "android/android-launchericon-96-96.png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "android/android-launchericon-72-72.png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "android/android-launchericon-48-48.png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "ios/16.png",
+      "sizes": "16x16"
+    },
+    {
+      "src": "ios/20.png",
+      "sizes": "20x20"
+    },
+    {
+      "src": "ios/29.png",
+      "sizes": "29x29"
+    },
+    {
+      "src": "ios/32.png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "ios/40.png",
+      "sizes": "40x40"
+    },
+    {
+      "src": "ios/57.png",
+      "sizes": "57x57"
+    },
+    {
+      "src": "ios/80.png",
+      "sizes": "80x80"
+    }
     ]
 }
