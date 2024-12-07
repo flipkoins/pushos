@@ -49,9 +49,13 @@
  function goBack() {
      // Remove current history entry
     history.replaceState(null, '', document.location.href);
-    
+  
     // Go back to the previous page
-    window.history.go(-1);
+    if(document.referrer.includes('www.bookmylivestock.com')) {
+        window.history.go(-1):
+    } else {
+        document.location.href = "https://www.bookmylivestock.com/ta"
+    };
  }
     
   document.getElementById('subscribeNow').addEventListener('click', () => {
