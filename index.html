@@ -5,14 +5,27 @@
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/16.png" type="image/png" sizes="16x16">
 <link rel="icon" href="/32.png"  type="image/png" sizes="32x32" />
-
+<style>
+@media only screen and (max-width: 375px) {
+    #subscribeNow {
+       font-size: 48px;
+       margin-top:70px;
+    }
+}
+@media only screen and (max-width: 425px) {
+    #subscribeNow {
+       font-size: 35px;
+       padding: 23px 78px;
+    }
+}
+</style>
 </head>
 <body style="
     text-align: center;
     padding: 40px 10px;
 ">
     <img src="/android-launchericon-192-192.png" alt="Logo">
-<h1 style="
+<p style="
     padding: 0px 70px;
     margin: auto;
     text-align: center;
@@ -21,7 +34,7 @@
     font-size: 24px;
     /* max-width: 320px; */
     /* width: 300px; */
-">கால்நடைகளின் தகவல், விலை விவரம், விற்பனை பதிவு போன்றவற்றை தெரிந்து கொள்ள வேண்டுமா? "Enable Notification" என்பதைக் கிளிக் செய்து, பின்னர் "Allow" என்பதை தேர்வு செய்யுங்கள்.</h1>
+">கால்நடைகளின் தகவல், விலை விவரம், விற்பனை பதிவு போன்றவற்றை தெரிந்து கொள்ள வேண்டுமா? "Enable Notification" என்பதைக் கிளிக் செய்து, பின்னர் "Allow" என்பதை தேர்வு செய்யுங்கள்.</p>
     <button id="subscribeNow" style="
     margin-top: 38px;
     font-size: 24px;
