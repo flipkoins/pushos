@@ -14,19 +14,16 @@
         align-items: center;
         flex-direction: column;
         text-align: center;
-        margin: 10px;
-        min-height: 90vh;
+        padding: 10px 10px;
       }
-      
-      .body-inner {
-        border: 1px solid #e9e9e9;
-        box-shadow: 0px 0px 100px 37px #e2e0e0;
-        padding: 10px;
-        border-radius: 4px;
+      .inner {
+        max-width: 320px;
+        width: 320px;
       }
 
       .cancel {
         text-align: left;
+        margin-bottom: 30px;
       }
 
       .go-back-icon {
@@ -49,20 +46,28 @@
         margin: auto;
         text-align: center;
         /* margin-top: 50px; */
-        line-height: 23px;
+        line-height: 28px;
         font-size: 18px;
         max-width: 320px;
         /* width: 300px; */
       }
 
       #subscribeNow {
-        margin-top: 20px;
-        font-size: 18px;
-        padding: 14px 14px;
+        margin-top: 38px;
+        font-size: 19px;
+        padding: 13px 50px;
         background: #05a884;
         color: white;
         border: none;
         cursor: pointer;
+        width: 300px;
+      }
+
+      @media only screen and (max-width: 425px) {
+        #subscribeNow {
+          font-size: 20px;
+          padding: 14px 6px;
+        }
       }
     </style>
     <script
@@ -77,7 +82,7 @@
           <span class="go-back-icon">&#8701;</span><span>Go Back</span>
         </button>
       </div>
-      <img src="/android-launchericon-96-96.png" alt="Logo" />
+      <img src="/android-launchericon-192-192.png" alt="Logo" />
       <p id="subscribeText">
         கால்நடை தகவல்கள், விலை விவரங்கள், கால்நடை விற்பனை செய்திகள் மற்றும்
         மேலும் பலவற்றை தெரிந்துகொள்ள விரும்புகிறீர்களா? "தெரிந்துகொள்ள
@@ -141,9 +146,7 @@
                 enableText.innerHTML =
                   "நீங்கள் அறிவிப்பு அனுமதியை மறுத்துவிட்டீர்கள் என்பதை கண்டதில் வருத்தமாக உள்ளது. தேவையான நேரத்தில், நீங்கள் பின்னர் அறிவிப்புகளை அனுமதிக்கலாம், நன்றி. Redirecting...";
                 subscribeNow.style = "display:none";
-                setTimeout(() => {
-                  goBack();
-                }, 6000);
+                initizeOneSignal();
                 console.log("User denied permission");
               }
             });
@@ -156,6 +159,7 @@
             subscribeNow.style = "display:none";
             enableText.innerHTML =
               'இந்தத் தளத்தின் அறிவிப்புகளை நீங்கள் தடுத்துள்ளீர்கள் என்று தெரிகிறது. கால்நடை தகவல்கள், விலை விவரங்கள், கால்நடை விற்பனை செய்திகள் மற்றும் மேலும் பலவற்றை தெரிந்து கொள்ள, உங்கள் "browser settings" சென்று "Allow Notifications" என்பதை தேர்வு செய்யுங்கள்.';
+            initizeOneSignal();
           } else {
             errorMessage();
             console.log("Notifications are blocked");
