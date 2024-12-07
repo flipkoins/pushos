@@ -57,12 +57,16 @@
         document.location.href = "https://www.bookmylivestock.com/ta"
     };
  }
-    
+
+ if ("Notification" in window) {
+    if (Notification.permission === "granted") {
+        goBack();
+      console.log("Notifications are enabled");
+    }
+ }
   document.getElementById('subscribeNow').addEventListener('click', () => {
       if ("Notification" in window) {
-        if (Notification.permission === "granted") {
-          console.log("Notifications are enabled");
-        } else if (Notification.permission === "default") {
+        if (Notification.permission === "default") {
           Notification.requestPermission().then((permission) => {
             if (permission === "granted") {
               window.OneSignalDeferred = window.OneSignalDeferred || [];
