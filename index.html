@@ -46,6 +46,14 @@
     cursor: pointer;
 ">Enable Notification</button>
 <script>
+ function goBack() {
+     // Remove current history entry
+    history.replaceState(null, '', document.location.href);
+    
+    // Go back to the previous page
+    window.history.go(-1);
+ }
+    
   document.getElementById('subscribeNow').addEventListener('click', () => {
       if ("Notification" in window) {
         if (Notification.permission === "granted") {
@@ -60,26 +68,26 @@
                   }).then(() => {
                     console.log("OneSignal initialized successfully.");
                     // Additional tasks after initialization
-                    window.opener.postMessage({ action: 'subscriptionSuccess' }, 'https://www.bookmylivestock.com');
+                    goBack();
                     return OneSignal.getUserId();
                   }).then((userId) => {
                     console.log("User ID:", userId);
                   }).catch((error) => {
-                    window.opener.postMessage({ action: 'subscriptionFailed' }, 'https://www.bookmylivestock.com');
+                    goBack();
                     console.error("Error initializing OneSignal:", error);
                   });
                 });
             } else {
-              window.opener.postMessage({ action: 'subscriptionFailed' }, 'https://www.bookmylivestock.com');
+               goBack();
               console.log("User denied permission");
             }
           });
         } else {
-          window.opener.postMessage({ action: 'subscriptionFailed' }, 'https://www.bookmylivestock.com');
+          goBack();
           console.log("Notifications are blocked");
         }
       } else {
-        window.opener.postMessage({ action: 'subscriptionFailed' }, 'https://www.bookmylivestock.com');
+        goBack();
         console.log(
           "Notifications are not supported on this device or browser."
         );
