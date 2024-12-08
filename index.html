@@ -119,8 +119,8 @@
             appId: "84c7596a-6657-4ac8-9039-aab9f2237940",
           });
         });
-        
-        if(isRedirect) {
+
+        if (isRedirect) {
           setTimeout(() => {
             goBack();
           }, 7000);
@@ -140,11 +140,15 @@
           if (Notification.permission === "default") {
             Notification.requestPermission().then((permission) => {
               if (permission === "granted") {
+                document.cookie =
+                  "subscribedPush=granted; path=/; domain=.bookmylivestock.com; SameSite=None; Secure";
                 enableText.innerHTML =
                   "கால்நடை தகவல்கள், விலை விவரங்கள், கால்நடை விற்பனை செய்திகள் மற்றும் மேலும் பலவற்றை பெறுவதற்கு அனுமதி அளித்ததற்கு நன்றி. Redirecting...";
                 subscribeNow.style = "display:none";
                 initizeOneSignal(true);
               } else if (permission === "denied") {
+                document.cookie =
+                  "subscribedPush=denied; path=/; domain=.bookmylivestock.com; SameSite=None; Secure";
                 enableText.innerHTML =
                   "நீங்கள் அறிவிப்பு அனுமதியை மறுத்துவிட்டீர்கள் என்பதை கண்டதில் வருத்தமாக உள்ளது. தேவையான நேரத்தில், நீங்கள் பின்னர் அறிவிப்புகளை அனுமதிக்கலாம், நன்றி. Redirecting...";
                 subscribeNow.style = "display:none";
@@ -153,20 +157,28 @@
               }
             });
           } else if (Notification.permission === "granted") {
+            document.cookie =
+              "subscribedPush=granted; path=/; domain=.bookmylivestock.com; SameSite=None; Secure";
             subscribeNow.style = "display:none";
             enableText.innerHTML =
               "நீங்கள் ஏற்கனவே அறிவிப்புகளை அனுமதித்துள்ளீர்கள். கால்நடை தகவல்கள், விலை விவரங்கள், கால்நடை விற்பனை செய்திகள் மற்றும் மேலும் பலவற்றை பெறுவதற்கு அனுமதி அளித்ததற்கு நன்றி. Redirecting...";
             initizeOneSignal(true);
           } else if (Notification.permission === "denied") {
+            document.cookie =
+              "subscribedPush=denied; path=/; domain=.bookmylivestock.com; SameSite=None; Secure";
             subscribeNow.style = "display:none";
             enableText.innerHTML =
               'இந்தத் தளத்தின் அறிவிப்புகளை நீங்கள் தடுத்துள்ளீர்கள் என்று தெரிகிறது. கால்நடை தகவல்கள், விலை விவரங்கள், கால்நடை விற்பனை செய்திகள் மற்றும் மேலும் பலவற்றை தெரிந்து கொள்ள, உங்கள் "browser settings" சென்று "Allow Notifications" என்பதை தேர்வு செய்யுங்கள்.';
             initizeOneSignal(false);
           } else {
+             document.cookie =
+              "subscribedPush=error; path=/; domain=.bookmylivestock.com; SameSite=None; Secure";
             errorMessage();
             console.log("Notifications are blocked");
           }
         } else {
+           document.cookie =
+              "subscribedPush=not-supported; path=/; domain=.bookmylivestock.com; SameSite=None; Secure";
           errorMessage();
           console.log(
             "Notifications are not supported on this device or browser."
