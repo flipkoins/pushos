@@ -104,8 +104,9 @@
         }
       }
 
-      function errorMessage() {
-        enableText.innerHTML = "Something went wrong. Redirecting...";
+      function errorMessage(errorText) {
+        enableText.innerHTML =
+          errorText || "Something went wrong. Redirecting...";
         subscribeNow.style = "display:none";
         setTimeout(() => {
           goBack();
@@ -171,15 +172,13 @@
               'இந்தத் தளத்தின் அறிவிப்புகளை நீங்கள் தடுத்துள்ளீர்கள் என்று தெரிகிறது. கால்நடை தகவல்கள், விலை விவரங்கள், கால்நடை விற்பனை செய்திகள் மற்றும் மேலும் பலவற்றை தெரிந்து கொள்ள, உங்கள் "browser settings" சென்று "Allow Notifications" என்பதை தேர்வு செய்யுங்கள்.';
             initizeOneSignal(false);
           } else {
-             document.cookie =
-              "subscribedPush=error; path=/; domain=.bookmylivestock.com; SameSite=None; Secure";
-            errorMessage();
+            errorMessage("Notifications are blocked, Redirecting");
             console.log("Notifications are blocked");
           }
         } else {
-           document.cookie =
-              "subscribedPush=not-supported; path=/; domain=.bookmylivestock.com; SameSite=None; Secure";
-          errorMessage();
+          errorMessage(
+            "Notifications are not supported on this device or browser, Redirecting"
+          );
           console.log(
             "Notifications are not supported on this device or browser."
           );
